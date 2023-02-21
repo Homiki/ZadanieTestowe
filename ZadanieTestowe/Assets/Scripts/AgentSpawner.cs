@@ -21,6 +21,9 @@ public class AgentSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        Vector3 randomSpawnPosition = new Vector3(Random.Range(-47, 48), 5.1f, Random.Range(-47, 48));
+        Instantiate(agentObject, randomSpawnPosition, Quaternion.identity);
+
     }
 }
