@@ -39,9 +39,10 @@ public class AgentSpawner : MonoBehaviour
     {
         for (int i = 1; i <= maxAgent; i++)
         {
+            yield return new WaitForSeconds(spawningTime);
             Vector3 randomSpawnPosition = new Vector3(Random.Range(-47, 48), 5.1f, Random.Range(-47, 48));
             Instantiate(agentObject, randomSpawnPosition, Quaternion.identity);
-            yield return new WaitForSeconds(spawningTime);
+            //yield return new WaitForSeconds(spawningTime);
         }
     }
 }
