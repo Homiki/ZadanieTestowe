@@ -7,6 +7,11 @@ public class AgentController : MonoBehaviour
     int health;
     int maxHealth = 3;
     int damage;
+
+    public Material damaged;
+    public Material normal;
+    public Renderer agent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +23,10 @@ public class AgentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(health == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -26,6 +34,16 @@ public class AgentController : MonoBehaviour
         if(collision.gameObject.CompareTag("Agent"))
         {
             health -= damage;
+
+            StartCoroutine(HurtAgent());
+
         }
+    }
+
+    IEnumerator HurtAgent()
+    {
+        agent.material = damaged;
+        yield return new WaitForSeconds(0.5f);
+        agent.material = normal;
     }
 }
