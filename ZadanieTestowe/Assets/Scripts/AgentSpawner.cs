@@ -12,8 +12,6 @@ public class AgentSpawner : MonoBehaviour
     public int maxAgent;
     public float spawningTime;
 
-    //public bool isPanelOpened; //Controller for clicked agent
-
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +42,6 @@ public class AgentSpawner : MonoBehaviour
             yield return new WaitForSeconds(spawningTime);
             Vector3 randomSpawnPosition = new Vector3(Random.Range(-47, 48), 5.1f, Random.Range(-47, 48));
             Instantiate(agentObject, randomSpawnPosition, Quaternion.identity);
-            //yield return new WaitForSeconds(spawningTime);
         }
     }
 }

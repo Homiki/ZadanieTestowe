@@ -8,7 +8,6 @@ public class PanelController : MonoBehaviour
 
     public GameObject agentPanel;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -25,14 +24,11 @@ public class PanelController : MonoBehaviour
             
             agentPanel.transform.localScale = new Vector3(1, 1, 1);
             Debug.Log("TRUE");
-            //this.enabled = true;
         }
-        else /*if (isPanelOpened == false)*/
+        else
         {
             agentPanel.transform.localScale = new Vector3(0, 0, 0);
-            //agentPanel.SetActive(false);
             Debug.Log("FALSE");
-            //this.enabled = false;
         }
     }
 }
