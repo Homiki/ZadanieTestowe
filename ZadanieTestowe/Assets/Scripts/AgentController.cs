@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AgentController : MonoBehaviour
 {
-    int health;
+    public int health;
     int maxHealth = 3;
     int damage;
+
+    public Text HealthText;
+    public Text NameText;
+
 
     public Material damaged;
     public Material normal;
@@ -27,6 +32,10 @@ public class AgentController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        HealthText.text = health.ToString();
+        NameText.text = gameObject.name;
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -36,7 +45,6 @@ public class AgentController : MonoBehaviour
             health -= damage;
 
             StartCoroutine(HurtAgent());
-
         }
     }
 
@@ -45,5 +53,12 @@ public class AgentController : MonoBehaviour
         agent.material = damaged;
         yield return new WaitForSeconds(0.5f);
         agent.material = normal;
+    }
+
+    public void GetText()
+    {
+        HealthText = GameObject.FindGameObjectWithTag("AgentCurrentHP").GetComponent<Text>();
+        NameText = GameObject.FindGameObjectWithTag("AgentName").GetComponent<Text>();
+
     }
 }
