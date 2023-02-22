@@ -23,6 +23,7 @@ public class AgentController : MonoBehaviour
 
         health = maxHealth;
         damage = 1;
+
     }
 
     // Update is called once per frame
@@ -33,8 +34,9 @@ public class AgentController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        HealthText.text = health.ToString();
-        NameText.text = gameObject.name;
+
+        //GetText();
+
 
     }
 
@@ -60,5 +62,7 @@ public class AgentController : MonoBehaviour
         HealthText = GameObject.FindGameObjectWithTag("AgentCurrentHP").GetComponent<Text>();
         NameText = GameObject.FindGameObjectWithTag("AgentName").GetComponent<Text>();
 
+        HealthText.text = health.ToString();
+        NameText.text = gameObject.name;
     }
 }

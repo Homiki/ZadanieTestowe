@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class ClickedAgent : MonoBehaviour
 {
-    bool isPanelOpened;
+    //bool isPanelOpened;
 
-    GameObject agentPanel;
+    public GameObject agentPanel;
 
     Renderer render;
 
@@ -15,46 +15,75 @@ public class ClickedAgent : MonoBehaviour
 
     AgentController controller;
 
+    //AgentSpawner spawner;
+
+    PanelController panelControl;
+
     private Color color = Color.green;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        agentPanel = GameObject.FindGameObjectWithTag("Panel");
+        //spawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<AgentSpawner>();
+        panelControl = GetComponent<PanelController>();
+        controller = GetComponent<AgentController>();
         render = gameObject.GetComponent<Renderer>();
         cc = gameObject.GetComponent<CapsuleCollider>();
-        controller = GetComponent<AgentController>();
-        isPanelOpened = false;
+        //panelControl.isPanelOpened = false;
+        agentPanel = GameObject.FindGameObjectWithTag("Panel");
+        
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if(isPanelOpened == true)
-        {
-            agentPanel.SetActive(true);
-        }
-        else
-        {
-            agentPanel.SetActive(false);
-        }
-
+    {     
         if (Input.GetMouseButtonDown(0))
         {
             HighlightAgent(false);
-            isPanelOpened = false;
+            panelControl.isPanelOpened = false;
+            panelControl.enabled = false;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
 
-            if (cc.Raycast(ray, out hit, 200.0f))
+            if (cc.Raycast(ray, out hit, 150.0f))
             {
                 HighlightAgent(true);
-                controller.GetText();
-                isPanelOpened = true;
+
+                panelControl.enabled = true;
+                panelControl.isPanelOpened = true;
+                //controller.GetText();
             }
         }
+
+        //---------PROBABLY NEED UI CONTROLLER--------
+
+        //if (panelControl.isPanelOpened == true)
+        //{
+        //    //agentPanel.transform.localScale = new Vector3(1, 1, 1);
+        //    //Debug.Log("TRUE");
+        //    //panelControl.enabled = true;
+        //}
+        //else if (panelControl.isPanelOpened == false)
+        //{
+        //    //agentPanel.transform.localScale = new Vector3(0, 0, 0);
+        //    //Debug.Log("FALSE");
+        //    //panelControl.enabled = false;
+        //}
+
+        //if (isPanelOpened == true)
+        //{
+        //    //agentPanel = GameObject.FindGameObjectWithTag("Panel");
+        //    //agentPanel.SetActive(true);
+        //    agentPanel.transform.localScale = new Vector3(0, 0, 0);
+        //    Debug.Log("TRUE");
+        //}
+        //else if (isPanelOpened == false)
+        //{
+        //    //agentPanel.transform.localScale = new Vector3(1, 1, 1);
+        //    Debug.Log("FALSE");
+        //}
     }
 
     public void HighlightAgent(bool val)
@@ -63,9 +92,21 @@ public class ClickedAgent : MonoBehaviour
         {
             render.material.EnableKeyword("_EMISSION");
             render.material.SetColor("_EmissionColor", color);
-        }else /*if (Input.GetMouseButtonUp(0))*/
+
+            controller.GetText();
+
+            //agentPanel.transform.localScale = new Vector3(1, 1, 1);
+
+            Debug.Log("Clicked");
+            //spawner.isPanelOpened = true;
+        }
+        else /*if (Input.GetMouseButtonUp(0))*/
         {
             render.material.DisableKeyword("_EMISSION");
+            //spawner.isPanelOpened = false;
+            agentPanel.transform.localScale = new Vector3(0, 0, 0);
+            Debug.Log("Unclicked");
+
         }
 
     }

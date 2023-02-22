@@ -12,6 +12,8 @@ public class AgentSpawner : MonoBehaviour
     public int maxAgent;
     public float spawningTime;
 
+    //public bool isPanelOpened; //Controller for clicked agent
+
     // Start is called before the first frame update
     void Start()
     {
