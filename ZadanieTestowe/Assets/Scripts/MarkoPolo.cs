@@ -36,34 +36,40 @@ public class MarkoPolo : MonoBehaviour
 
     public void MarkoPoloDigit()
     {
-        //for(int i=1; i < 100; i++)
-        //{
-        //    //textPanel.text = i.ToString();
-        //    ////if (digit % 3 == 0)
-        //    ////{
-        //    ////    textPanel.text = "Marko \n";
-        //    ////}
-        //    ////else if (digit % 5 == 0)
-        //    ////{
-        //    ////    textPanel.text = "Polo \n";
-        //    ////}
-        //    ////else if (digit % 3 == 0 && digit % 5 == 0)
-        //    ////{
-        //    ////    textPanel.text = "MarkoPolo \n";
-        //    ////}
-        //    ////else
-        //    ////{
-        //    ////    textPanel.text = digit.ToString() + "\n";
-        //    ////}
-
-        //    //digit++;
-        //}
-
-        StartCoroutine(DigitUnderDigit(digit));
+        //StartCoroutine(DigitUnderDigit(digit));
 
         if (isTextPanelOpened == false)
         {
             isTextPanelOpened = true;
+            //StartCoroutine(DigitUnderDigit(digit));
+
+            for (int i = 1; i <= 100; i++)
+            {
+                //textPanel.text = i.ToString();
+                if (digit % 3 == 0)
+                {
+                    textPanel.text = textPanel.text += "Marko \n";
+
+                }
+                else if (digit % 5 == 0)
+                {
+                    textPanel.text = textPanel.text += "Polo \n";
+
+                }
+                else if (digit % 3 == 0 && digit % 5 == 0)
+                {
+                    textPanel.text = textPanel.text += "MarkoPolo \n";
+
+                }
+                else
+                {
+                    textPanel.text = textPanel.text += digit.ToString() + "\n";
+
+                }
+
+                digit++;
+
+            }
 
         }
         else if (isTextPanelOpened == true)
@@ -74,35 +80,35 @@ public class MarkoPolo : MonoBehaviour
         }
     }
 
-    IEnumerator DigitUnderDigit(int digit)
-    {
-        for (int i = 1; i <= 100; i++)
-        {
-            //textPanel.text = i.ToString();
-            if (digit % 3 == 0)
-            {
-                textPanel.text = textPanel.text += "Marko \n";
+    //IEnumerator DigitUnderDigit(int digit)
+    //{
+    //    //for (int i = 1; i <= 100; i++)
+    //    //{
+    //    //    //textPanel.text = i.ToString();
+    //    //    if (digit % 3 == 0)
+    //    //    {
+    //    //        textPanel.text = textPanel.text += "Marko \n";
+    //    //        yield return textPanel.text;
+    //    //    }
+    //    //    else if (digit % 5 == 0)
+    //    //    {
+    //    //        textPanel.text = textPanel.text += "Polo \n";
+    //    //        yield return textPanel.text;
+    //    //    }
+    //    //    else if (digit % 3 == 0 && digit % 5 == 0)
+    //    //    {
+    //    //        textPanel.text = textPanel.text += "MarkoPolo \n";
+    //    //        yield return textPanel.text;
+    //    //    }
+    //    //    else
+    //    //    {
+    //    //        textPanel.text = textPanel.text += digit.ToString() + "\n";
+    //    //        yield return textPanel.text;
+    //    //    }
 
-            }
-            else if (digit % 5 == 0)
-            {
-                textPanel.text = textPanel.text += "Polo \n";
+    //    //    digit++;
 
-            }
-            else if (digit % 3 == 0 && digit % 5 == 0)
-            {
-                textPanel.text = textPanel.text += "MarkoPolo \n";
-
-            }
-            else
-            {
-                textPanel.text = textPanel.text += digit.ToString() + "\n";
-
-            }
-
-            digit++;
-
-            yield return textPanel.text;
-        }
-    }
+    //    //    yield return textPanel.text;
+    //    //}
+    //}
 }
