@@ -7,12 +7,11 @@ public class MarkoPolo : MonoBehaviour
 {
     int digit;
 
+    bool isTextPanelOpened;
+
+    [SerializeField]
     public Text textPanel;
     public GameObject panelUI;
-
-    bool isTextPanelOpened;
-    
-
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +37,12 @@ public class MarkoPolo : MonoBehaviour
     {
         if (isTextPanelOpened == false)
         {
+            //Opening text window
             isTextPanelOpened = true;
+            
+            //Clearing text window
+            textPanel.text = "";
+
 
             for (int i = 1; i <= 100; i++)
             {
@@ -64,6 +68,7 @@ public class MarkoPolo : MonoBehaviour
         }
         else if (isTextPanelOpened == true)
         {
+            //Closing, clearing text window and reseting digit variable
             isTextPanelOpened = false;
             textPanel.text = "";
             digit = 1;
