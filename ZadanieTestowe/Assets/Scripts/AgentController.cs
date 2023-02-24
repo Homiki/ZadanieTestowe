@@ -17,13 +17,16 @@ public class AgentController : MonoBehaviour
     public Material normal;
     public Renderer agent;
 
+    public GameObject spawner;
+    AgentSpawner agentspawn;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        spawner = GameObject.Find("AgentSpawner");
+        agentspawn = spawner.GetComponent<AgentSpawner>();
         health = maxHealth;
         damage = 1;
-
     }
 
     // Update is called once per frame
@@ -31,12 +34,9 @@ public class AgentController : MonoBehaviour
     {
         if(health == 0)
         {
+            agentspawn.deadAgent++;
             Destroy(gameObject);
         }
-
-        //GetText();
-
-
     }
 
     private void OnCollisionEnter(Collision collision)
