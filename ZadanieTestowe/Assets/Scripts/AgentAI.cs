@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class AgentAI : MonoBehaviour
 {
+    //Speed of agent regulated in NavMeshAgent component
     NavMeshAgent agent;
 
     public float range;
